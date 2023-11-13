@@ -11,7 +11,7 @@ notnan_data = pd.read_csv("../data/data_notNan.csv")
 
 print(notnan_data.head())
 
-delcol = ['x', 'y']
+delcol = ['% x', 'y']
 for col in notnan_data.columns[2:]:
     u, t = map(float, col.split("@"))
     if t == 0:
