@@ -9,6 +9,9 @@ import numpy as np
 import re
 
 
+# rawdata = pd.read_csv("../data/rawdata_backup.csv", skiprows=8)
+# rawdata.to_csv('../data/rawdata.csv', index=False)
+
 def colnamestrans():
     new_colnames = []
     new_colnames.extend(['x', 'y'])
@@ -32,10 +35,11 @@ def colnamestrans():
     with open("../data/rawdata.csv", 'w') as f:
         f.writelines(lines)
 
+
 # ut
 # colnamestrans()
 
-rawdata = pd.read_csv("../data/rawdata.csv")
+rawdata = pd.read_csv('../data/rawdata.csv')
 
 print(len(rawdata.columns.tolist()))
 print(len(rawdata.iloc[0].dropna().tolist()))
