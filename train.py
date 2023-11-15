@@ -81,7 +81,7 @@ class CDCGAN:
                 plt.tight_layout()
                 plt.close()
                 self.first = False
-            label = test_label.view([self.batch_size, 2, 1, 1]).to(device)
+            label = test_label.view([64, 2, 1, 1]).to(device)
             noise_label = torch.cat([noise, label], dim=1)
             fake_img = gen(noise_label)
             plt.figure(figsize=(8, 8))
@@ -133,7 +133,7 @@ class CDCGAN:
 
         d_optim = torch.optim.Adam(dis.parameters(), lr=0.00005)
         g_optim = torch.optim.Adam(gen.parameters(), lr=0.00020)
-        test_noise = torch.randn(self.batch_size, 100, 1, 1).to(device)
+        test_noise = torch.randn(64, 100, 1, 1).to(device)
         for _ in range(self.epochs):
             g_loss, d_loss = self.train_step(gen, dis, data_loader, g_loss_func, d_loss_func, g_optim, d_optim)
             print('Epoch {}/{}, g_loss = {:.4f}, d_loss = {:.4f}'.format(self.epoch + 1, self.epochs, g_loss, d_loss))
