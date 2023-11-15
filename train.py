@@ -126,7 +126,7 @@ class CDCGAN:
         dis = Discriminator().to(device)
 
         def d_loss_func(real, fake):
-            return torch.mean(torch.square(real - 1.0)) + torch.mean(torch.square(fake))
+            return torch.mean(torch.square(real - 1.0)) + torch.mean(torch.square(fake)) + 1
 
         def g_loss_func(fake):
             return torch.mean(torch.square(fake - 1.0))
@@ -142,6 +142,6 @@ class CDCGAN:
 
 
 if __name__ == '__main__':
-    gan = CDCGAN(batch_size=64)
+    gan = CDCGAN(epochs=5000, batch_size=128)
 
     gan.train()
